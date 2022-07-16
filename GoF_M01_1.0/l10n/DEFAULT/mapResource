@@ -1,4 +1,6 @@
 mapResource = 
 {
+    ["ResKey_Action_8"] = "Moose.lua",
+    ["ResKey_Action_9"] = "Moose.lua",
     ["ResKey_Action_7"] = "MicClick.ogg",
 } -- end of mapResource
