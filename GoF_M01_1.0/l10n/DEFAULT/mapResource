@@ -1,3 +1,4 @@
 mapResource = 
 {
+    ["ResKey_Action_7"] = "MicClick.ogg",
 } -- end of mapResource
