@@ -1,9 +1,14 @@
 dictionary = 
 {
-    ["DictKey_descriptionNeutralsTask_4"] = "",
-    ["DictKey_sortie_5"] = "Ghost of Freedom - Enguri on Fire",
+    ["DictKey_ActionRadioText_12"] = "Load Troops",
     ["DictKey_descriptionText_1"] = "",
     ["DictKey_descriptionBlueTask_3"] = "",
-    ["DictKey_ActionText_6"] = "[ALL] Russian units have breached past the Enguri! Blue team failure!",
     ["DictKey_descriptionRedTask_2"] = "",
+    ["DictKey_descriptionNeutralsTask_4"] = "",
+    ["DictKey_sortie_5"] = "Ghost of Freedom - Enguri on Fire",
+    ["DictKey_ActionText_16"] = "Troops Loaded!",
+    ["DictKey_ActionText_14"] = "",
+    ["DictKey_ActionText_6"] = "[ALL] Russian units have breached past the Enguri! Blue team failure!",
+    ["DictKey_ActionText_15"] = "Troops Loaded!",
+    ["DictKey_ActionRadioText_13"] = "Unload Troops",
 } -- end of dictionary
