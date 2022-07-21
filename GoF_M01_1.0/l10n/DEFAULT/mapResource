@@ -1,5 +1,6 @@
 mapResource = 
 {
+    ["ResKey_Action_17"] = "ctld_init.lua",
     ["ResKey_Action_10"] = "CTLD.lua",
     ["ResKey_Action_11"] = "mist.lua",
     ["ResKey_Action_8"] = "Moose.lua",

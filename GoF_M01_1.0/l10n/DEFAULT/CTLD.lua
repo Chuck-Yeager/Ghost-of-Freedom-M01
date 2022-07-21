@@ -29,9 +29,9 @@ ctld.Id = "CTLD - "
 ctld.Version = "20211113.01"
 
 -- debug level, specific to this module
-ctld.Debug = true
+ctld.Debug = false
 -- trace level, specific to this module
-ctld.Trace = true
+ctld.Trace = false
 
 ctld.alreadyInitialized = false -- if true, ctld.initialize() will not run
 
@@ -317,6 +317,14 @@ ctld.transportPilotNames = {
     "MEDEVAC BLUE #19",
     "MEDEVAC BLUE #20",
     "MEDEVAC BLUE #21",
+    "1-1/A",
+    "1-2/A",
+    "1-3/A",
+    "1-4/A",
+    "1-1/B",
+    "1-2/B",
+    "1-3/B",
+    "1-4/B",
 
     -- *** AI transports names (different names only to ease identification in mission) ***
 
