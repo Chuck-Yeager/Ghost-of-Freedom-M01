@@ -39,6 +39,14 @@ def main():
         help=
         "If set, don't actually copy the mission archive to the DCS saved games dir."
     )
+
+    parser.add_argument(
+        '-f',
+        '--force',
+        action='store_true',
+        default=False,
+        help='Overwrite uncommitted changes when unpacking the mission')
+
     args = parser.parse_args()
 
     all_subdirs = glob(os.path.join(os.getcwd(), '*/'))
@@ -60,7 +68,6 @@ def main():
             shutil.copyfile(dst=miz_in_dcs_dir, src=miz_fullname)
             os.remove(miz_local)
 
-
     def unpack():
         try:
             import git
@@ -68,9 +75,9 @@ def main():
             pass
         else:
             repo = git.Repo(os.getcwd())
-            if repo.is_dirty():
+            if not args.force and repo.is_dirty():
                 print(
-                    "Found untracked local files, please commit or discard before unpacking mission."
+                    "Found untracked local changes, please commit or discard before unpacking mission."
                 )
                 exit(-1)
 
