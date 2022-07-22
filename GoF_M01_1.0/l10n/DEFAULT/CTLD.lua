@@ -317,14 +317,36 @@ ctld.transportPilotNames = {
     "MEDEVAC BLUE #19",
     "MEDEVAC BLUE #20",
     "MEDEVAC BLUE #21",
+
+    --Alpha Company--
+
     "1-1/A",
     "1-2/A",
     "1-3/A",
     "1-4/A",
+
+    "2-1/A",
+    "2-2/A",
+    "2-3/A",
+    "2-4/A",
+
+    "6-6/A",
+    "6-5/A",
+
+    -- Bravo Company --
+
     "1-1/B",
     "1-2/B",
     "1-3/B",
     "1-4/B",
+
+    "2-1/B",
+    "2-2/B",
+    "2-3/B",
+    "2-4/B",
+
+    "6-6/B",
+    "6-5/B",
 
     -- *** AI transports names (different names only to ease identification in mission) ***
 

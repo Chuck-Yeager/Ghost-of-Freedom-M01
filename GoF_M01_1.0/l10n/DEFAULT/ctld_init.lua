@@ -1,11 +1,14 @@
 local PRELOAD_DISMOUNT_COMPOSITIONS = {
     ["M-2 Bradley"] = {
-        inf = 3,
-        at = 4
+        mortar = 5,
+        at = 1,
+        mg = 1
     },
-    ["Stryker"] = {
-        inf = 4,
-        at = 5
+    ["M1126 Stryker ICV"] = {
+        inf = 2,
+        mg = 1,
+        at = 5,
+        aa = 1
     }
 }
 
