@@ -101,7 +101,7 @@ ctld.radioSoundFC3 = "beaconsilent.ogg" -- name of the second silent radio file,
 
 ctld.deployedBeaconBattery = 30 -- the battery on deployed beacons will last for this number minutes before needing to be re-deployed
 
-ctld.enabledRadioBeaconDrop = true -- if its set to false then beacons cannot be dropped by units
+ctld.enabledRadioBeaconDrop = false -- if its set to false then beacons cannot be dropped by units
 
 ctld.allowRandomAiTeamPickups = false -- Allows the AI to randomize the loading of infantry teams (specified below) at pickup zones
 
@@ -229,10 +229,10 @@ ctld.wpZones = {
 
 -- Use any of the predefined names or set your own ones
 ctld.transportPilotNames = {
-    "helicargo1",
-    "helicargo2",
-    "helicargo3",
-    "helicargo4",
+    "JOLLY-1",
+    "JOLLY-2",
+    "GATOR-1",
+    "GATOR-2",
     "helicargo5",
     "helicargo6",
     "helicargo7",
@@ -517,16 +517,16 @@ ctld.JTAC_WEIGHT = 15 -- kg
 -- You can also add an optional coalition side to limit the group to one side
 -- for the side - 2 is BLUE and 1 is RED
 ctld.loadableGroups = {
-    {name = "Standard Group", inf = 6, mg = 2, at = 2 }, -- will make a loadable group with 6 infantry, 2 MGs and 2 anti-tank for both coalitions
-    {name = "Anti Air", inf = 2, aa = 3  },
-    {name = "Anti Tank", inf = 2, at = 6  },
-    {name = "Mortar Squad", mortar = 6 },
-    {name = "JTAC Group", inf = 4, jtac = 1 }, -- will make a loadable group with 4 infantry and a JTAC soldier for both coalitions
-    {name = "Single JTAC", jtac = 1 }, -- will make a loadable group witha single JTAC soldier for both coalitions
+    {name = "Infantry Squad", inf = 2, mg = 1, at = 4 }, -- will make a loadable group with 6 infantry, 2 MGs and 2 anti-tank for both coalitions
+    {name = "Mortar Squad", mg = 1, at = 1, mortar = 5 },
+    --{name = "Anti Tank", inf = 2, at = 6  },
+    --{name = "Mortar Squad", mortar = 6 },
+    --{name = "JTAC Group", inf = 4, jtac = 1 }, -- will make a loadable group with 4 infantry and a JTAC soldier for both coalitions
+    --{name = "Single JTAC", jtac = 1 }, -- will make a loadable group witha single JTAC soldier for both coalitions
     -- {name = "Mortar Squad Red", inf = 2, mortar = 5, side =1 }, --would make a group loadable by RED only
 }
 
--- ************** SPAWNABLE CRATES ******************
+-- ************** SPAWNABLE CRATES *******************
 -- Weights must be unique as we use the weight to change the cargo to the correct unit
 -- when we unpack
 --
