@@ -1,7 +1,8 @@
 dictionary = 
 {
     ["DictKey_ActionRadioText_12"] = "Load Troops",
-    ["DictKey_descriptionText_1"] = "",
+    ["DictKey_descriptionText_1"] = "SITUATION:  The year is 2008.  Russian-backed separatists attack across the Enguri River after Georgia suddenly enters NATO.  Tactical commanders in Combined Arms must direct NATO ground units against the onslaught while coordinating with fixed and rotor-wing CAS.  Supply choppers transport fresh units to the front.  The Enguri River must be held.\
+                        ",
     ["DictKey_descriptionBlueTask_3"] = "",
     ["DictKey_descriptionRedTask_2"] = "",
     ["DictKey_descriptionNeutralsTask_4"] = "",
