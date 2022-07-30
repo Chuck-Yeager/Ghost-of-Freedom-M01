@@ -19,7 +19,7 @@ for _, unit in ipairs(RU_ARTY_NAMES) do
 end
 
 -- create RU MLRS
-ru_mlrs = ARTY:New(GROUP:FindByName(RU_MLRS_NAME), "smerch"):AddToCluster("ru_mlrs")
+ru_mlrs = ARTY:New(GROUP:FindByName(RU_MLRS_NAME), "Smerch_HE"):AddToCluster("ru_mlrs")
 table.insert(allRedArties, ru_mlrs)
 
 -- create US artillery
@@ -110,7 +110,7 @@ local function artyDetectionStateMachine(side, arties)
     local ARTY_RANGES_BY_TYPE = {
         ["SAU Msta"] = {30, 23500},
         ["SAU Gvozdika"] = {30, 15000},
-        ["Smerch"] = {20000, 70000},
+        ["Smerch_HE"] = {20000, 70000},
         ["SAU 2-C9"] = {30, 15000},
         ["2S3 Akatsia"] = {30, 17000},
         ["T155_Firtina"] = {30, 41000},
