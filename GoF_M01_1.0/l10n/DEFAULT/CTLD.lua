@@ -517,8 +517,8 @@ ctld.JTAC_WEIGHT = 15 -- kg
 -- You can also add an optional coalition side to limit the group to one side
 -- for the side - 2 is BLUE and 1 is RED
 ctld.loadableGroups = {
-    {name = "Infantry Squad", inf = 2, mg = 1, at = 4 }, -- will make a loadable group with 6 infantry, 2 MGs and 2 anti-tank for both coalitions
-    {name = "Mortar Squad", mg = 1, at = 1, mortar = 5 },
+    {name = "Infantry Squad (w/ AT)", inf = 2, mg = 1, at = 4 }, -- will make a loadable group with 6 infantry, 2 MGs and 2 anti-tank for both coalitions
+    {name = "Mortar Squad (w/AA)", mg = 1, at = 1, mortar = 5 },
     --{name = "Anti Tank", inf = 2, at = 6  },
     --{name = "Mortar Squad", mortar = 6 },
     --{name = "JTAC Group", inf = 4, jtac = 1 }, -- will make a loadable group with 4 infantry and a JTAC soldier for both coalitions
