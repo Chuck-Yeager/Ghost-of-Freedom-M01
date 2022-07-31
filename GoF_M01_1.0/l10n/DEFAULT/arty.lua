@@ -49,9 +49,8 @@ for _, unit in ipairs(US_MLRS_NAMES) do
 end
 
 -- start MLRS
-ru_mlrs:Start()
-us_mlrs:Start()
-
+--ru_mlrs:Start()
+--us_mlrs:Start()
 
 -- start arties
 for _, arty in ipairs(allArties) do
