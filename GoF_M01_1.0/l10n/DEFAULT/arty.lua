@@ -1,12 +1,13 @@
-local RU_MLRS_NAME = "Russian MLRS BTRY"
+local RU_MLRS_NAMES = {"Russian MLRS BTRY", "RUS GRAD BTRY", "RUS Uragan BTRY"}
 local RU_ARTY_NAMES = {"Russian 2S19 BTRY-1", "Russian 2S19 BTRY-2", "Russian 2S19 BTRY-3"}
-local US_MLRS_NAME = "Blue M270 BTRY"
-local US_ARTY_NAMES = {"Blue T155 BTRY", "Blue 109 BTRY"}
+local US_MLRS_NAMES = {"GRG Uragan BTRY","GRG GRAD BTRY-1","GRG GRAD BTRY-2"}
+local US_ARTY_NAMES = {"TURK T155 BTRY", "US 109 BTRY"}
 
 ARTY:SetDebugOFF()
 ARTY:SetMarkAssignmentsOn()
 local allArties = {}
 local allRedArties = {}
+local allBlueArties ={}
 
 -- create RU artillery
 local ruArtyCount = 1
@@ -19,8 +20,15 @@ for _, unit in ipairs(RU_ARTY_NAMES) do
 end
 
 -- create RU MLRS
-ru_mlrs = ARTY:New(GROUP:FindByName(RU_MLRS_NAME), "Smerch_HE"):AddToCluster("ru_mlrs")
-table.insert(allRedArties, ru_mlrs)
+
+--ru_mlrs = ARTY:New(GROUP:FindByName(RU_MLRS_NAME), "Smerch_HE"):AddToCluster("ru_mlrs")
+--table.insert(allRedArties, ru_mlrs)
+
+for _, unit in ipairs(RU_MLRS_NAMES) do
+    local arty = ARTY:New(unit):AddToCluster("ru_mlrs")
+    table.insert(allArties, arty)
+    table.insert(allRedArties, arty)
+end
 
 -- create US artillery
 local usArtyCount = 1
@@ -28,11 +36,17 @@ for _, unit in ipairs(US_ARTY_NAMES) do
     local name = "us" .. tostring(usArtyCount)
     local arty = ARTY:New(unit, name):AddToCluster("us_arty")
     table.insert(allArties, arty)
+    table.insert(allBlueArties, arty)
     usArtyCount = usArtyCount + 1
 end
 
 -- create US MLRS
-us_mlrs = ARTY:New(GROUP:FindByName(US_MLRS_NAME), "m270"):AddToCluster("us_mlrs")
+
+for _, unit in ipairs(US_MLRS_NAMES) do
+    local arty = ARTY:New(unit):AddToCluster("us_mlrs")
+    table.insert(allArties, arty)
+    table.insert(allBlueArties, arty)
+end
 
 -- start MLRS
 ru_mlrs:Start()
@@ -223,4 +237,4 @@ local function artyDetectionStateMachine(side, arties)
 end
 
 artyDetectionStateMachine(coalition.side.RED, allRedArties)
-
+artyDetectionStateMachine(coalition.side.BLUE, allBlueArties)
