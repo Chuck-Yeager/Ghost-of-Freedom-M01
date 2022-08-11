@@ -132,7 +132,7 @@ ctld.AASystemLimitBLUE = 20 -- Blue side limit
 ctld.JTAC_LIMIT_RED = 10 -- max number of JTAC Crates for the RED Side
 ctld.JTAC_LIMIT_BLUE = 10 -- max number of JTAC Crates for the BLUE Side
 
-ctld.JTAC_dropEnabled = true -- allow JTAC Crate spawn from F10 menu
+ctld.JTAC_dropEnabled = false -- allow JTAC Crate spawn from F10 menu
 
 ctld.JTAC_maxDistance = 10000 -- How far a JTAC can "see" in meters (with Line of Sight)
 
@@ -142,7 +142,7 @@ ctld.JTAC_smokeOn_BLUE = true -- enables marking of target with smoke for BLUE f
 ctld.JTAC_smokeColour_RED = 4 -- RED side smoke colour -- Green = 0 , Red = 1, White = 2, Orange = 3, Blue = 4
 ctld.JTAC_smokeColour_BLUE = 1 -- BLUE side smoke colour -- Green = 0 , Red = 1, White = 2, Orange = 3, Blue = 4
 
-ctld.JTAC_jtacStatusF10 = true -- enables F10 JTAC Status menu
+ctld.JTAC_jtacStatusF10 = false -- enables F10 JTAC Status menu
 
 ctld.JTAC_location = true -- shows location of target in JTAC message
 ctld.location_DMS = false -- shows coordinates as Degrees Minutes Seconds instead of Degrees Decimal minutes
