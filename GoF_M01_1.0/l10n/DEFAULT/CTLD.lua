@@ -538,7 +538,7 @@ ctld.loadableGroups = {
 --
 ctld.spawnableCrates = {
     -- name of the sub menu on F10 for spawning crates
-    ["Ground Forces"] = {
+    ["Crates for Spawning Vehicles"] = {
         --crates you can spawn
         -- weight in KG
         -- Desc is the description on the F10 MENU
@@ -548,6 +548,7 @@ ctld.spawnableCrates = {
         -- dont use that option with the HAWK Crates
         { weight = 500, desc = "Stryker - TOW", unit = "M1134 Stryker ATGM", side = 2 },
         { weight = 505, desc = "Stryker - MGS", unit = "M1128 Stryker MGS", side = 2 },
+        { weight = 400, desc = "M1097 Avenger", unit = "M1097 Avenger", side = 2, cratesRequired = 1 },
 
        -- { weight = 520, desc = "HMMWV - JTAC", unit = "Hummer", side = 2, }, -- used as jtac and unarmed, not on the crate list if JTAC is disabled
        -- { weight = 525, desc = "SKP-11 - JTAC", unit = "SKP-11", side = 1, }, -- used as jtac and unarmed, not on the crate list if JTAC is disabled
@@ -555,10 +556,6 @@ ctld.spawnableCrates = {
         { weight = 253, desc = "M-818 Ammo Truck", unit = "M 818", side = 2, cratesRequired = 1 },
 
         --{ weight = 800, desc = "FOB Crate - Small", unit = "FOB-SMALL" }, -- Builds a FOB! - requires 3 * ctld.cratesRequiredForFOB
-    },
-    ["AA short range"] = {
-        
-        { weight = 400, desc = "M1097 Avenger", unit = "M1097 Avenger", side = 2, cratesRequired = 1 },
     },
     
 }
