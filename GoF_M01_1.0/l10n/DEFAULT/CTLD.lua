@@ -427,8 +427,8 @@ ctld.extractableGroups = {
 -- When a logistic unit is destroyed, you will no longer be able to spawn crates
 
 ctld.logisticUnits = {
-    "logistic1",
-    "logistic2",
+    "FARP_CC",
+    "HQ_CC",
     "logistic3",
     "logistic4",
     "logistic5",
