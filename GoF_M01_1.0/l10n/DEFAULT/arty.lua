@@ -4,6 +4,7 @@ local US_MLRS_NAMES = {"GRG Uragan BTRY","GRG GRAD BTRY-1","GRG GRAD BTRY-2"}
 local US_ARTY_NAMES = {"TURK T155 BTRY", "US 109 BTRY"}
 
 ARTY:SetDebugOFF()
+ARTY:SetReportOFF()
 ARTY:SetMarkAssignmentsOn()
 local allArties = {}
 local allRedArties = {}
