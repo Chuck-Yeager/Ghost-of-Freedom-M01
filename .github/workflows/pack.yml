@@ -1,8 +1,7 @@
 name: Build mission package
 
 on:
-  release:
-  workflow_dispatch:
+  [push, workflow_dispatch]
 
 jobs:
   build:
@@ -25,3 +24,10 @@ jobs:
         with:
           name: Mission file
           path: out/*.miz
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/v')
+        with:
+          files: |
+            out/GoF-M01.miz
