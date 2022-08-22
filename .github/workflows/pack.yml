@@ -30,4 +30,4 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/v')
         with:
           files: |
-            out/GoF-M01.miz
+            out/*.miz
