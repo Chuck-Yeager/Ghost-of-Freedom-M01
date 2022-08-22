@@ -1,6 +1,6 @@
-local RU_MLRS_NAMES = {}
+--local RU_MLRS_NAMES = {}
 local RU_ARTY_NAMES = {"Russian 2S19 BTRY-1", "Russian 2S19 BTRY-2", "Russian 2S19 BTRY-3", "Russian 2S19 BTRY-4"}
-local US_MLRS_NAMES = {}
+--local US_MLRS_NAMES = {}
 local US_ARTY_NAMES = {"TURK T155 BTRY", "US 109 BTRY", "GRG AKATSIA BTRY-1", "GRG AKATSIA BTRY-2", "GRG Dana BTRY"}
 
 ARTY:SetDebugOFF()
@@ -25,11 +25,11 @@ end
 --ru_mlrs = ARTY:New(GROUP:FindByName(RU_MLRS_NAME), "Smerch_HE"):AddToCluster("ru_mlrs")
 --table.insert(allRedArties, ru_mlrs)
 
-for _, unit in ipairs(RU_MLRS_NAMES) do
-    local arty = ARTY:New(unit):AddToCluster("ru_mlrs")
-    table.insert(allArties, arty)
-    table.insert(allRedArties, arty)
-end
+--for _, unit in ipairs(RU_MLRS_NAMES) do
+--    local arty = ARTY:New(unit):AddToCluster("ru_mlrs")
+--    table.insert(allArties, arty)
+--    table.insert(allRedArties, arty)
+--end
 
 -- create US artillery
 local usArtyCount = 1
@@ -43,11 +43,11 @@ end
 
 -- create US MLRS
 
-for _, unit in ipairs(US_MLRS_NAMES) do
-    local arty = ARTY:New(unit):AddToCluster("us_mlrs")
-    table.insert(allArties, arty)
-    table.insert(allBlueArties, arty)
-end
+--for _, unit in ipairs(US_MLRS_NAMES) do
+--    local arty = ARTY:New(unit):AddToCluster("us_mlrs")
+--    table.insert(allArties, arty)
+--    table.insert(allBlueArties, arty)
+--end
 
 -- start MLRS
 --ru_mlrs:Start()
