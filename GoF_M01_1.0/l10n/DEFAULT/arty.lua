@@ -126,7 +126,7 @@ local function artyDetectionStateMachine(side, arties)
         ["SAU Gvozdika"] = {30, 15000},
         ["Smerch_HE"] = {20000, 70000},
         ["SAU 2-C9"] = {30, 15000},
-        ["2S3 Akatsia"] = {30, 17000},
+        ["SAU Akatsia"] = {30, 17000},
         ["T155_Firtina"] = {30, 41000},
         ["M-109"] = {30, 22000},
         ["MLRS"] = {10000, 32000},
