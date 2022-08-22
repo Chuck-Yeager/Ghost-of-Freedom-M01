@@ -16,8 +16,17 @@ def find_dcs_directory():
     raise ValueError("Cannot find DCS saved games directory")
 
 
-def main():
+def get_dcs_missions_dir():
     dcs_dir = find_dcs_directory()
+    missions_dir = os.path.join(dcs_dir, 'Missions')
+    return missions_dir
+
+
+def canonical_path(p):
+    return os.path.normpath(os.path.abspath(p))
+
+
+def main():
     parser = argparse.ArgumentParser(
         description='Pack/unpack DCS mission from/to the git repo.')
     command_group = parser.add_mutually_exclusive_group(required=True)
@@ -25,20 +34,18 @@ def main():
         '--pack',
         action='store_true',
         help='Pack the miz file and copy to DCS saved games dir')
+
     command_group.add_argument(
         '--unpack',
         action='store_true',
-        help=
-        'Extract the contents of the miz file from the DCS saved games dir to the local repo.'
-    )
+        help='Extract the contents of the miz file from the DCS saved ' +
+        'games dir to the local repo.')
     parser.add_argument(
         '-d',
-        '--dont_copy',
-        action='store_false',
-        default=False,
-        help=
-        "If set, don't actually copy the mission archive to the DCS saved games dir."
-    )
+        '--directory',
+        nargs='?',
+        const=os.getcwd(),
+        help="If specified, copy the mission file into this directory.")
 
     parser.add_argument(
         '-f',
@@ -46,26 +53,33 @@ def main():
         action='store_true',
         default=False,
         help='Overwrite uncommitted changes when unpacking the mission')
-
     args = parser.parse_args()
 
-    all_subdirs = glob(os.path.join(os.getcwd(), '*/'))
-    miz_subdir = all_subdirs[0]
-    dirname, mizname = os.path.split(miz_subdir[:-1])
+    miz_subdir = 'GoF_M01_1.0'
+    mizname = 'GoF_M01'
     miz_fullname = mizname + '.miz'
+    miz_fullpath = canonical_path(miz_fullname)
 
-    missions_dir = os.path.join(dcs_dir, 'Missions')
-    miz_in_dcs_dir = os.path.join(missions_dir, miz_fullname)
+    use_default_dir = args.directory is None
+    missions_dir = get_dcs_missions_dir(
+    ) if use_default_dir else args.directory
+    missions_dir = canonical_path(missions_dir)
+    if not os.path.exists(missions_dir):
+        os.makedirs(missions_dir)
+    if not os.path.isdir(missions_dir):
+        raise ValueError(f"{missions_dir} is not a directory")
+    miz_in_missions_dir = canonical_path(
+        os.path.join(missions_dir, miz_fullname))
     miz_local = os.path.join(os.getcwd(), miz_fullname)
 
     def pack():
         shutil.make_archive(mizname, format='zip', root_dir=miz_subdir)
-        shutil.move(mizname + '.zip', miz_fullname)
-        if not args.dont_copy:
-            if os.path.exists(miz_in_dcs_dir):
-                shutil.copyfile(dst=miz_in_dcs_dir + '.backup',
-                                src=miz_in_dcs_dir)
-            shutil.copyfile(dst=miz_in_dcs_dir, src=miz_fullname)
+        shutil.move(mizname + '.zip', miz_fullpath)
+        if os.path.exists(miz_in_missions_dir):
+            shutil.copyfile(dst=miz_in_missions_dir + '.backup',
+                            src=miz_in_missions_dir)
+        if miz_in_missions_dir != miz_fullpath:
+            shutil.copyfile(dst=miz_in_missions_dir, src=miz_fullpath)
             os.remove(miz_local)
 
     def unpack():
@@ -77,16 +91,16 @@ def main():
             repo = git.Repo(os.getcwd())
             if not args.force and repo.is_dirty():
                 print(
-                    "Found untracked local changes, please commit or discard before unpacking mission."
-                )
+                    "Found untracked local changes, please commit or discard" +
+                    " before unpacking mission.")
                 exit(-1)
 
         all_subdirs = glob(os.path.join(os.getcwd(), '*/'))
         miz_subdir = all_subdirs[0]
-        dirname, mizname = os.path.split(miz_subdir[:-1])
-        shutil.copyfile(src=miz_in_dcs_dir, dst=miz_fullname)
-        shutil.unpack_archive(miz_fullname, miz_subdir, format='zip')
-        os.remove(miz_local)
+        if miz_in_missions_dir != miz_fullname:
+            shutil.copyfile(src=miz_in_missions_dir, dst=miz_fullname)
+            shutil.unpack_archive(miz_fullname, miz_subdir, format='zip')
+            os.remove(miz_local)
 
     if args.pack:
         pack()
