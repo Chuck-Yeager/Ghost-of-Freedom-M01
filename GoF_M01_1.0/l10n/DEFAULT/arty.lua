@@ -1,7 +1,7 @@
-local RU_MLRS_NAMES = {"Russian MLRS BTRY", "RUS GRAD BTRY", "RUS Uragan BTRY"}
-local RU_ARTY_NAMES = {"Russian 2S19 BTRY-1", "Russian 2S19 BTRY-2", "Russian 2S19 BTRY-3"}
-local US_MLRS_NAMES = {"GRG Uragan BTRY","GRG GRAD BTRY-1","GRG GRAD BTRY-2"}
-local US_ARTY_NAMES = {"TURK T155 BTRY", "US 109 BTRY"}
+local RU_MLRS_NAMES = {}
+local RU_ARTY_NAMES = {"Russian 2S19 BTRY-1", "Russian 2S19 BTRY-2", "Russian 2S19 BTRY-3", "Russian 2S19 BTRY-4"}
+local US_MLRS_NAMES = {}
+local US_ARTY_NAMES = {"TURK T155 BTRY", "US 109 BTRY", "GRG AKATSIA BTRY-1", "GRG AKATSIA BTRY-2", "GRG Dana BTRY"}
 
 ARTY:SetDebugOFF()
 ARTY:SetReportOFF()
@@ -131,7 +131,8 @@ local function artyDetectionStateMachine(side, arties)
         ["M-109"] = {30, 22000},
         ["MLRS"] = {10000, 32000},
         ["Grad-URAL"] = {5000, 19000},
-        ["Uragan_BM-27"] = {11500, 35800}
+        ["Uragan_BM-27"] = {11500, 35800},
+        ["SpGH_Dana"] = {30, 18500},
     }
     
     local function isWithinRange(unit, artyGroup)
