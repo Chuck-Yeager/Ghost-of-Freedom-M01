@@ -388,10 +388,11 @@ options =
         }, -- end of ["Mi-24P"]
         ["Mirage-F1"] = 
         {
-            ["F1SimplifiedFiringSafety"] = true,
             ["F1SimplifiedGearLever"] = true,
-            ["F1ModifiedABDetentPos"] = false,
             ["F1NewABDetentPos"] = 53,
+            ["F1SimplifiedFiringSafety"] = true,
+            ["F1ModifiedABDetentPos"] = false,
+            ["F1AutoCounterSet"] = true,
         }, -- end of ["Mirage-F1"]
         ["M-2000C"] = 
         {
