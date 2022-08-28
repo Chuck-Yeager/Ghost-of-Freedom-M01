@@ -3,6 +3,8 @@ local RU_ARTY_NAMES = {"Russian 2S19 BTRY-1", "Russian 2S19 BTRY-2", "Russian 2S
 --local US_MLRS_NAMES = {}
 local US_ARTY_NAMES = {"TURK T155 BTRY", "US 109 BTRY", "GRG AKATSIA BTRY-1", "GRG AKATSIA BTRY-2", "GRG Dana BTRY"}
 
+local DANGER_CLOSE_RANGE_METERS = 500
+
 ARTY:SetDebugOFF()
 ARTY:SetReportOFF()
 ARTY:SetMarkAssignmentsOn()
@@ -20,16 +22,6 @@ for _, unit in ipairs(RU_ARTY_NAMES) do
     ruArtyCount = ruArtyCount + 1
 end
 
--- create RU MLRS
-
---ru_mlrs = ARTY:New(GROUP:FindByName(RU_MLRS_NAME), "Smerch_HE"):AddToCluster("ru_mlrs")
---table.insert(allRedArties, ru_mlrs)
-
---for _, unit in ipairs(RU_MLRS_NAMES) do
---    local arty = ARTY:New(unit):AddToCluster("ru_mlrs")
---    table.insert(allArties, arty)
---    table.insert(allRedArties, arty)
---end
 
 -- create US artillery
 local usArtyCount = 1
@@ -41,17 +33,6 @@ for _, unit in ipairs(US_ARTY_NAMES) do
     usArtyCount = usArtyCount + 1
 end
 
--- create US MLRS
-
---for _, unit in ipairs(US_MLRS_NAMES) do
---    local arty = ARTY:New(unit):AddToCluster("us_mlrs")
---    table.insert(allArties, arty)
---    table.insert(allBlueArties, arty)
---end
-
--- start MLRS
---ru_mlrs:Start()
---us_mlrs:Start()
 
 -- start arties
 for _, arty in ipairs(allArties) do
@@ -174,6 +155,38 @@ local function artyDetectionStateMachine(side, arties)
         end
     end
 
+    local function isDangerClose(unit, detectedUnit)
+        local x1 = unit:GetCoordinate()
+        local x2 = detectedUnit:GetCoordinate()
+        local distance = x1:Get2DDistance(x2)
+        return distance < DANGER_CLOSE_RANGE_METERS
+    end
+
+    local function isInvisibleFlagSet(unit)
+        local groupName = unit:GetGroup():GetName()
+        if not groupName then
+            return false
+        end
+        
+        local firstWaypointTask = mist.getGroupRoute(groupName, true)[1]["task"]
+        if not firstWaypointTask then
+            return false
+        end
+        local isComboTask = firstWaypointTask["id"] == "ComboTask"
+        if not isComboTask then
+            return
+        end
+
+        local comboTasks = firstWaypointTask["params"]["tasks"]
+        for idx, elem in ipairs(comboTasks) do
+            local action = comboTasks[idx]["params"]["action"]
+            if action and action["id"] == "SetInvisible" and action["params"]["value"] then
+                return true
+            end
+        end
+        return false
+    end
+
     local function fetchingDetectedUnits()
         local unit = nil
         if unitIndex > #allUnits then
@@ -186,6 +199,19 @@ local function artyDetectionStateMachine(side, arties)
         local detectedByThisUnit = unit:GetDetectedUnitSet(true, true, true, false, false, false)
         detectedByThisUnit:ForEachUnit(function(detectedUnit)
             if not detectedUnit:IsGround() then
+                return
+            end
+
+            -- only ensures that the calling unit does not bring arty down on top of its own head,
+            -- does not check for other blue units (as this would be yet another nested loop and
+            --  possibly expensive)
+            if isDangerClose(unit, detectedUnit) then
+                return
+            end
+
+            -- Previously it seemed as if the RED forces would detect invisible JTAC teams, 
+            -- but can no longer repro. Leaving the check in here for now.
+            if isInvisibleFlagSet(detectedUnit) then
                 return
             end
             
@@ -208,6 +234,10 @@ local function artyDetectionStateMachine(side, arties)
     end
 
     local function assignFireMissions()
+        if timer.getAbsTime() - timer.getTime0() < 60*11 then
+            return 20
+        end
+
         local detectedUnitIds = keysToArray(detectedUnits)
         for _, arty in ipairs(arties) do
             if arty:GetState() == "CombatReady" then
