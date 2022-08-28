@@ -118,6 +118,10 @@ local function artyDetectionStateMachine(side, arties)
     
     local function isWithinRange(unit, artyGroup)
         local units = artyGroup:GetUnits()
+        if not units then
+            return false
+        end
+        
         local artyRange = nil
         local unitIdx = 1
         while artyRange == nil and unitIdx < #units do
